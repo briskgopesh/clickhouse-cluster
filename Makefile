@@ -1,15 +1,16 @@
 .PHONY: config
 config:
-	rm -rf clickhouse01 clickhouse02 clickhouse03 clickhouse04
-	mkdir -p clickhouse01 clickhouse02 clickhouse03 clickhouse04
-	REPLICA=01 SHARD=01 envsubst < config.xml > clickhouse01/config.xml
-	REPLICA=02 SHARD=01 envsubst < config.xml > clickhouse02/config.xml
-	REPLICA=03 SHARD=02 envsubst < config.xml > clickhouse03/config.xml
-	REPLICA=04 SHARD=02 envsubst < config.xml > clickhouse04/config.xml
-	cp users.xml clickhouse01/users.xml
-	cp users.xml clickhouse02/users.xml
-	cp users.xml clickhouse03/users.xml
-	cp users.xml clickhouse04/users.xml
+	apt update -y && apt install clickhouse-client -y
+	rm -rf /clickhousedb-data/clickhouse01 /clickhousedb-data/clickhouse02 /clickhousedb-data/clickhouse03 /clickhousedb-data/clickhouse04
+	mkdir -p /clickhousedb-data/clickhouse01 /clickhousedb-data/clickhouse02 /clickhousedb-data/clickhouse03 /clickhousedb-data/clickhouse04
+	REPLICA=01 SHARD=01 envsubst < config.xml > /clickhousedb-data/clickhouse01/config.xml
+	REPLICA=02 SHARD=01 envsubst < config.xml > /clickhousedb-data/clickhouse02/config.xml
+	REPLICA=03 SHARD=02 envsubst < config.xml > /clickhousedb-data/clickhouse03/config.xml
+	REPLICA=04 SHARD=02 envsubst < config.xml > /clickhousedb-data/clickhouse04/config.xml
+	cp users.xml /clickhousedb-data/clickhouse01/users.xml
+	cp users.xml /clickhousedb-data/clickhouse02/users.xml
+	cp users.xml /clickhousedb-data/clickhouse03/users.xml
+	cp users.xml /clickhousedb-data/clickhouse04/users.xml
 
 .PHONY: up
 up:
