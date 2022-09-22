@@ -3,6 +3,10 @@ config:
 	apt update -y && apt install clickhouse-client -y
 	rm -rf /clickhousedb-data/clickhouse01 /clickhousedb-data/clickhouse02 /clickhousedb-data/clickhouse03 /clickhousedb-data/clickhouse04
 	mkdir -p /clickhousedb-data/clickhouse01 /clickhousedb-data/clickhouse02 /clickhousedb-data/clickhouse03 /clickhousedb-data/clickhouse04
+	rm -rf /clickhousedb-data/zookeeper01 /clickhousedb-data/zookeeper02 /clickhousedb-data/zookeeper03
+	mkdir -p /clickhousedb-data/zookeeper01/{dataDir,dataLogDir,logs} 
+	mkdir -p /clickhousedb-data/zookeeper02/{dataDir,dataLogDir,logs}
+         mkdir -p /clickhousedb-data/zookeeper03/{dataDir,dataLogDir,logs}
 	REPLICA=01 SHARD=01 envsubst < config.xml > /clickhousedb-data/clickhouse01/config.xml
 	REPLICA=02 SHARD=01 envsubst < config.xml > /clickhousedb-data/clickhouse02/config.xml
 	REPLICA=03 SHARD=02 envsubst < config.xml > /clickhousedb-data/clickhouse03/config.xml
