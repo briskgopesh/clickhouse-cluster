@@ -50,7 +50,8 @@ services:
       - "18123:8123"
       - "19000:9000"
     volumes:
-      - /clickhousedb-data/clickhouse01:/etc/clickhouse-server
+      - /clickhousedb-data/clickhouse01/config:/etc/clickhouse-server
+      - /clickhousedb-data/clickhouse01/dataDir:/var/lib/clickhouse
     ulimits:
         nofile:
             soft: 262144
@@ -70,7 +71,8 @@ services:
       - "28123:8123"
       - "29000:9000"
     volumes:
-      - /clickhousedb-data/clickhouse02:/etc/clickhouse-server
+      - /clickhousedb-data/clickhouse02/config:/etc/clickhouse-server
+      - /clickhousedb-data/clickhouse02/dataDir:/var/lib/clickhouse
     ulimits:
         nofile:
             soft: 262144
@@ -90,7 +92,8 @@ services:
       - "38123:8123"
       - "39000:9000"
     volumes:
-      - /clickhousedb-data/clickhouse03:/etc/clickhouse-server
+      - /clickhousedb-data/clickhouse03/config:/etc/clickhouse-server
+      - /clickhousedb-data/clickhouse03/dataDir:/var/lib/clickhouse
     ulimits:
         nofile:
             soft: 262144
@@ -110,7 +113,8 @@ services:
       - "48123:8123"
       - "49000:9000"
     volumes:
-      - /clickhousedb-data/clickhouse04:/etc/clickhouse-server
+      - /clickhousedb-data/clickhouse04/config:/etc/clickhouse-server
+      - /clickhousedb-data/clickhouse04/dataDir:/var/lib/clickhouse
     ulimits:
         nofile:
             soft: 262144
