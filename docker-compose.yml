@@ -10,9 +10,9 @@ services:
       clickhouse-network:
         ipv4_address: 172.23.0.8
     volumes:
-      - /clickhousedb-data/zookeeper01/dataDir:/data
-      - /clickhousedb-data/zookeeper01/dataLogDir:/datalog
-      - /clickhousedb-data/zookeeper01/logs:/logs
+      - /db-data/clickhousedb-data/zookeeper01/dataDir:/data
+      - /db-data/clickhousedb-data/zookeeper01/dataLogDir:/datalog
+      - /db-data/clickhousedb-data/zookeeper01/logs:/logs
   zookeeper2:
     image: zookeeper:3.7
     container_name: zookeeper2
@@ -23,9 +23,9 @@ services:
       clickhouse-network:
         ipv4_address: 172.23.0.9
     volumes:
-      - /clickhousedb-data/zookeeper02/dataDir:/data
-      - /clickhousedb-data/zookeeper02/dataLogDir:/datalog
-      - /clickhousedb-data/zookeeper02/logs:/logs
+      - /db-data/clickhousedb-data/zookeeper02/dataDir:/data
+      - /db-data/clickhousedb-data/zookeeper02/dataLogDir:/datalog
+      - /db-data/clickhousedb-data/zookeeper02/logs:/logs
   zookeeper3:
     image: zookeeper:3.7
     container_name: zookeeper3
@@ -36,9 +36,9 @@ services:
       clickhouse-network:
         ipv4_address: 172.23.0.10
     volumes:
-      - /clickhousedb-data/zookeeper03/dataDir:/data
-      - /clickhousedb-data/zookeeper03/dataLogDir:/datalog
-      - /clickhousedb-data/zookeeper03/logs:/logs
+      - /db-data/clickhousedb-data/zookeeper03/dataDir:/data
+      - /db-data/clickhousedb-data/zookeeper03/dataLogDir:/datalog
+      - /db-data/clickhousedb-data/zookeeper03/logs:/logs
   clickhouse01:
     image: clickhouse/clickhouse-server:22.8.4.7
     container_name: clickhouse01
@@ -50,7 +50,8 @@ services:
       - "18123:8123"
       - "19000:9000"
     volumes:
-      - /clickhousedb-data/clickhouse01:/etc/clickhouse-server
+      - /db-data/clickhousedb-data/clickhouse01/config:/etc/clickhouse-server
+      - /db-data/clickhousedb-data/clickhouse01/dataDir:/var/lib/clickhouse
     ulimits:
         nofile:
             soft: 262144
@@ -70,7 +71,8 @@ services:
       - "28123:8123"
       - "29000:9000"
     volumes:
-      - /clickhousedb-data/clickhouse02:/etc/clickhouse-server
+      - /db-data/clickhousedb-data/clickhouse02/config:/etc/clickhouse-server
+      - /db-data/clickhousedb-data/clickhouse02/dataDir:/var/lib/clickhouse
     ulimits:
         nofile:
             soft: 262144
@@ -90,7 +92,8 @@ services:
       - "38123:8123"
       - "39000:9000"
     volumes:
-      - /clickhousedb-data/clickhouse03:/etc/clickhouse-server
+      - /db-data/clickhousedb-data/clickhouse03/config:/etc/clickhouse-server
+      - /db-data/clickhousedb-data/clickhouse03/dataDir:/var/lib/clickhouse
     ulimits:
         nofile:
             soft: 262144
@@ -110,7 +113,8 @@ services:
       - "48123:8123"
       - "49000:9000"
     volumes:
-      - /clickhousedb-data/clickhouse04:/etc/clickhouse-server
+      - /db-data/clickhousedb-data/clickhouse04/config:/etc/clickhouse-server
+      - /db-data/clickhousedb-data/clickhouse04/dataDir:/var/lib/clickhouse
     ulimits:
         nofile:
             soft: 262144
@@ -126,3 +130,4 @@ networks:
     ipam:
       config:
         - subnet: 172.23.0.0/24
+
